@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ecolink</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background: #f1fdf4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background: #fff;
+      width: 420px;
+      padding: 2rem 2.5rem;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      text-align: center;
+      animation: fadeIn 0.6s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .logo {
+      background: linear-gradient(145deg, #16a34a, #22c55e);
+      width: 60px;
+      height: 60px;
+      border-radius: 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto 12px;
+    }
+
+    .logo::before {
+      content: "🌿";
+      font-size: 28px;
+      color: #fff;
+    }
+
+    h2 {
+      margin: 8px 0 6px;
+      color: #14532d;
+    }
+
+    p {
+      font-size: 0.9rem;
+      color: #4b5563;
+      margin-bottom: 1.5rem;
+    }
+
+    .tabs {
+      display: flex;
+      justify-content: center;
+      background: #e5f9e7;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+    }
+
+    .tab {
+      flex: 1;
+      padding: 0.7rem 0;
+      cursor: pointer;
+      font-weight: 600;
+      background: none;
+      border: none;
+      color: #4b5563;
+      transition: 0.3s ease;
+    }
+
+    .tab.active {
+      color: #14532d;
+      background: #fff;
+      border-bottom: 3px solid #16a34a;
+    }
+
+    form {
+      display: none;
+      flex-direction: column;
+      gap: 1rem;
+      text-align: left;
+      animation: fadeForm 0.3s ease;
+    }
+
+    @keyframes fadeForm {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    form.active {
+      display: flex;
+    }
+
+    label {
+      font-weight: 500;
+      color: #1f2937;
+      font-size: 0.9rem;
+    }
+
+    select, input {
+      padding: 0.7rem;
+      border-radius: 8px;
+      border: 1px solid #d1d5db;
+      font-size: 0.95rem;
+      outline: none;
+      width: 100%;
+      transition: border-color 0.2s;
+    }
+
+    select:focus, input:focus {
+      border-color: #16a34a;
+    }
+
+    .btn {
+      background: linear-gradient(to right, #16a34a, #22c55e);
+      color: white;
+      border: none;
+      padding: 0.8rem;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: scale(1.02);
+    }
+
+    small {
+      display: block;
+      margin-top: 10px;
+      font-size: 0.8rem;
+      color: #6b7280;
+      text-align: center;
+    }
+
+    small a {
+      color: #15803d;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo"></div>
+    <h2>Welcome to Ecolink</h2>
+    <p>Sign in to report or monitor environmental data</p>
+
+    <div class="tabs">
+      <button class="tab active" id="signInTab">Sign In</button>
+      <button class="tab" id="registerTab">Register</button>
+    </div>
+
+    <!-- SIGN IN FORM -->
+    <form id="signInForm" class="active" method="POST">
+      <label for="signin-role">I am a</label>
+      <select id="signin-role" name="role" required>
+        <option value="citizen">Citizen</option>
+        <option value="official">Environmental Officer</option>
+      </select>
+
+      <label>Email</label>
+      <input type="email" id="signin-email" name="email" placeholder="you@example.com" required />
+
+      <label>Password</label>
+      <input type="password" id="signin-password" name="password" placeholder="********" required />
+      <button type="submit" class="btn">Sign In</button>
+    </form>
+
+    <!-- REGISTER FORM -->
+    <form id="registerForm" method="POST">
+      <label for="register-role">I want to register as a</label>
+      <select id="register-role" name="role" required>
+        <option value="citizen">Citizen Reporter</option>
+        <option value="official">Environmental Officer</option>
+      </select>
+
+      <label>Full Name</label>
+      <input type="text" id="fullname" name="full_name" placeholder="John Doe" required />
+
+      <label>Email</label>
+      <input type="email" id="email" name="email" placeholder="you@example.com" required />
+
+      <label>Phone Number</label>
+      <input type="tel" id="phone" name="phone" placeholder="+91 0000000000" required />
+
+      <label>Password</label>
+      <input type="password" id="password" name="password" placeholder="********" required />
+
+      <label>Confirm Password</label>
+      <input type="password" id="confirmPassword" name="confirm_password" placeholder="********" required />
+
+      <button type="submit" class="btn">Create Account</button>
+    </form>
+  </div>
+
+  <script>
+    const signInTab = document.getElementById("signInTab");
+    const registerTab = document.getElementById("registerTab");
+    const signInForm = document.getElementById("signInForm");
+    const registerForm = document.getElementById("registerForm");
+
+    // Switch tabs
+    signInTab.addEventListener("click", () => {
+      signInTab.classList.add("active");
+      registerTab.classList.remove("active");
+      signInForm.classList.add("active");
+      registerForm.classList.remove("active");
+    });
+
+    registerTab.addEventListener("click", () => {
+      registerTab.classList.add("active");
+      signInTab.classList.remove("active");
+      registerForm.classList.add("active");
+      signInForm.classList.remove("active");
+    });
+
+    // Register form
+    registerForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const pass = document.getElementById("password").value;
+    const confirm = document.getElementById("confirmPassword").value;
+    if (pass !== confirm) {
+        alert("❌ Passwords do not match!");
+        return;
+    }
+
+    const formData = new FormData(registerForm);
+    formData.append("mode", "register");
+
+    try {
+        const response = await fetch("../backend/auth.php", {
+        method: "POST",
+        body: formData,
+        });
+        const result = await response.text();
+        alert(result);
+        registerForm.reset();
+    } catch (error) {
+        console.error(error);
+        alert("⚠️ Something went wrong. Please try again.");
+    }
+    });
+
+    // Sign-in form
+    signInForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const formData = new FormData(signInForm);
+    formData.append("mode", "login");
+
+    try {
+        const response = await fetch("../backend/auth.php", {
+        method: "POST",
+        body: formData,
+        });
+        const result = await response.text();
+        alert(result);
+
+        if (result.includes("Welcome")) {
+        window.location.href = "dashboard.html";
+        }
+
+        signInForm.reset();
+    } catch (error) {
+        console.error(error);
+        alert("⚠️ Server error! Please try again later.");
+    }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,693 @@
+/* --- Global Reset and Variables --- */
+:root {
+    /* Dark Mode Colors */
+    --dark-background: #1e1e2f;
+    --dark-sidebar: #28283c;
+    --dark-card-background: #2b2b40;
+    --dark-text-color: #e0e0e0;
+    --dark-secondary-text: #a0a0b0;
+    --dark-border-color: #3a3a50;
+    --dark-hover-bg: #3c3c55;
+    --dark-active-bg: #4a4a68;
+    
+    /* Light Mode Colors (Default) */
+    --light-background: #f4f4f9;
+    --light-sidebar: #ffffff;
+    --light-card-background: #ffffff;
+    --light-text-color: #333333;
+    --light-secondary-text: #666666;
+    --light-border-color: #dddddd;
+    --light-hover-bg: #f0f0f5;
+    --light-active-bg: #e0e0e5;
+
+    /* Primary Accent Colors (Should generally be constant) */
+    --primary-color: #007bff; /* Blue for primary actions/active state */
+    --primary-color-hover: #0069d9;
+    
+    /* Global Tag/Status Colors (Should generally be constant) */
+    --tag-high-bg: #dc3545; /* Red */
+    --tag-medium-bg: #ffc107; /* Yellow */
+    --tag-low-bg: #17a2b8; /* Cyan/Light Blue */
+    --tag-new-bg: #007bff; /* Primary Blue */
+    --tag-in-progress-bg: #ff8a00; /* Orange */
+    --tag-resolved-bg: #28a745; /* Green */
+    --tag-closed-bg: #6c757d; /* Grey */
+    --tag-active-bg: #28a745; 
+    --tag-inactive-bg: #6c757d; 
+    --tag-pending-bg: #ff8a00; 
+
+    /* Typography */
+    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --font-size-base: 14px;
+    
+    /* Dynamic Variables (Set to Light Mode defaults) */
+    --color-background: var(--light-background);
+    --color-sidebar: var(--light-sidebar);
+    --color-card-background: var(--light-card-background);
+    --color-text: var(--light-text-color);
+    --color-secondary-text: var(--light-secondary-text);
+    --color-border: var(--light-border-color);
+    --color-hover-bg: var(--light-hover-bg);
+    --color-active-bg: var(--light-active-bg);
+}
+
+/* --- Dark Mode Overrides: Changes Dynamic Variables to Dark Colors --- */
+.dark-mode {
+    --color-background: var(--dark-background);
+    --color-sidebar: var(--dark-sidebar);
+    --color-card-background: var(--dark-card-background);
+    --color-text: var(--dark-text-color);
+    --color-secondary-text: var(--dark-secondary-text);
+    --color-border: var(--dark-border-color);
+    --color-hover-bg: var(--dark-hover-bg);
+    --color-active-bg: var(--dark-active-bg);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Use Dynamic Variables for Body/Global Styles */
+body {
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    background-color: var(--color-background);
+    color: var(--color-text);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.dashboard-container {
+    display: flex;
+    min-height: 100vh;
+    background-color: var(--color-background); /* Ensures full coverage */
+}
+
+/* --- Sidebar (Aside) --- */
+.sidebar {
+    width: 200px;
+    background-color: var(--color-sidebar);
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Lighter shadow for light mode */
+    border-right: 1px solid var(--color-border);
+}
+
+/* Dark mode specific shadow adjustment */
+.dark-mode .sidebar {
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar .logo {
+    font-size: 1.5em;
+    font-weight: 600;
+    color: var(--primary-color);
+    padding: 0 20px 30px;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar .logo i {
+    margin-right: 10px;
+}
+
+.sidebar .nav-links {
+    flex-grow: 1;
+}
+
+.sidebar .nav-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    color: var(--color-secondary-text);
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.sidebar .nav-item i {
+    margin-right: 10px;
+    width: 20px;
+    text-align: center;
+}
+
+.sidebar .nav-item:hover {
+    background-color: var(--color-hover-bg);
+    color: var(--color-text);
+}
+
+.sidebar .nav-item.active {
+    background-color: var(--primary-color);
+    color: white;
+    /* Add a subtle visual indicator for active state */
+    border-left: 3px solid white;
+    padding-left: 17px; /* Adjust padding due to border-left */
+}
+
+/* --- Theme Switch/Settings Group --- */
+.settings-group {
+    padding-top: 20px;
+    border-top: 1px solid var(--color-border);
+    margin-top: 20px;
+}
+
+.settings-group .nav-item.settings {
+    margin-bottom: 10px;
+}
+
+.theme-switch-container {
+    display: flex;
+    background-color: var(--color-card-background); /* Use card background for container */
+    border: 1px solid var(--color-border); 
+    border-radius: 5px;
+    margin: 10px 20px 0;
+    padding: 3px;
+}
+
+.theme-btn {
+    flex-grow: 1;
+    padding: 8px 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: transparent;
+    color: var(--color-secondary-text);
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.theme-btn.active {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 600;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* --- Main Content --- */
+.main-content {
+    flex-grow: 1;
+    padding: 30px;
+    overflow-y: auto;
+}
+
+/* --- Content Views --- */
+.content-view {
+    display: none; /* Hide all views by default */
+}
+
+.content-view.active {
+    display: block; /* Show the active view */
+}
+
+/* --- Header --- */
+.view-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.view-header h2 {
+    font-size: 1.8em;
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.action-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--primary-color);
+    color: white;
+    font-size: var(--font-size-base);
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s, opacity 0.2s;
+}
+
+.action-btn i {
+    margin-right: 5px;
+}
+
+.action-btn:hover {
+    background-color: var(--primary-color-hover);
+}
+
+.action-btn.secondary-btn {
+    background-color: var(--color-hover-bg);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+}
+.action-btn.secondary-btn:hover {
+    background-color: var(--color-active-bg);
+}
+
+/* --- Controls Bar (Search/Filters) --- */
+.controls-bar {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.search-box {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    background-color: var(--color-card-background);
+    border-radius: 5px;
+    padding: 0 15px;
+    border: 1px solid var(--color-border);
+}
+
+.search-box i {
+    color: var(--color-secondary-text);
+    margin-right: 10px;
+}
+
+.search-box input[type="text"] {
+    flex-grow: 1;
+    padding: 12px 0;
+    border: none;
+    background: transparent;
+    color: var(--color-text);
+    font-size: var(--font-size-base);
+    outline: none;
+}
+.search-box input::placeholder {
+    color: var(--color-secondary-text);
+}
+
+.select-field {
+    padding: 10px 15px;
+    border: 1px solid var(--color-border);
+    border-radius: 5px;
+    background-color: var(--color-card-background);
+    color: var(--color-text);
+    font-size: var(--font-size-base);
+    appearance: none; /* Remove default arrow */
+    -webkit-appearance: none;
+    /* Default (Light Mode) SVG color for the dropdown arrow */
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23666666%22%20d%3D%22M287%2070.7c-3-3-7.8-3-10.8%200l-123.7%20123.7L28.8%2070.7c-3-3-7.8-3-10.8%200s-3%207.8%200%2010.8l129%20129c1.5%201.5%203.5%202.2%205.4%202.2s3.9-.7%205.4-2.2l129-129c3-3%203-7.8%200-10.8z%22%2F%3E%3C%2Fsvg%3E');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 10px;
+    cursor: pointer;
+}
+/* Dark mode specific SVG color override */
+.dark-mode .select-field {
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23a0a0b0%22%20d%3D%22M287%2070.7c-3-3-7.8-3-10.8%200l-123.7%20123.7L28.8%2070.7c-3-3-7.8-3-10.8%200s-3%207.8%200%2010.8l129%20129c1.5%201.5%203.5%202.2%205.4%202.2s3.9-.7%205.4-2.2l129-129c3-3%203-7.8%200-10.8z%22%2F%3E%3C%2Fsvg%3E');
+}
+
+
+/* --- Data Table --- */
+.data-table-container {
+    background-color: var(--color-card-background);
+    border-radius: 8px;
+    overflow-x: auto;
+    border: 1px solid var(--color-border);
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.data-table th, .data-table td {
+    padding: 15px 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--color-border);
+    white-space: nowrap; /* Prevent wrapping in cells */
+}
+
+.data-table th {
+    color: var(--color-secondary-text);
+    font-weight: 500;
+    font-size: 0.9em;
+    cursor: pointer;
+}
+
+.data-table th i.fa-sort {
+    margin-left: 5px;
+    font-size: 0.8em;
+}
+
+/* --- VISIBILITY IMPROVEMENT: Set text color/weight for table data cells (td) --- */
+.data-table td {
+    color: var(--color-text); /* Ensure data text uses the primary, high-contrast color */
+    font-weight: 500; /* Slightly increase weight for better contrast/visibility in both modes */
+}
+
+.data-table tr:hover {
+    background-color: var(--color-hover-bg);
+}
+
+/* --- Tags/Status Indicators (Colors are constant, text is white/dark-text-color) --- */
+.tag {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.85em;
+    font-weight: 600;
+    color: white; 
+    text-transform: capitalize;
+}
+
+/* Incident Status Tags */
+.status-new { background-color: var(--tag-new-bg); }
+.status-in-progress { background-color: var(--tag-in-progress-bg); }
+.status-resolved { background-color: var(--tag-resolved-bg); }
+.status-closed { background-color: var(--tag-closed-bg); }
+
+/* Severity Tags */
+.severity-high { background-color: var(--tag-high-bg); }
+.severity-medium { background-color: var(--tag-medium-bg); }
+.severity-low { background-color: var(--tag-low-bg); }
+
+/* User Status Tags */
+.user-active { background-color: var(--tag-active-bg); }
+.user-inactive { background-color: var(--tag-inactive-bg); }
+.user-pending { background-color: var(--tag-pending-bg); }
+
+
+/* --- Action Icons --- */
+.action-icons i {
+    margin-right: 10px;
+    color: var(--color-secondary-text);
+    cursor: pointer;
+    transition: color 0.2s;
+    font-size: 1.1em;
+    font-weight: 600; /* Added slight weight to icons for visibility */
+}
+
+.action-icons i:hover {
+    color: var(--primary-color);
+}
+
+.action-icons i:last-child {
+    margin-right: 0;
+}
+
+
+/* --- Table Footer/Pagination --- */
+.table-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-top: 1px solid var(--color-border);
+    color: var(--color-secondary-text);
+    font-size: 0.9em;
+    font-weight: 500; /* Added slight weight to footer text */
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.page-number {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.page-number:hover:not(.active) {
+    background-color: var(--color-hover-bg);
+}
+
+.page-number.active {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 600;
+}
+
+.page-arrow {
+    padding: 5px;
+    cursor: pointer;
+    color: var(--color-secondary-text);
+}
+
+.page-arrow.disabled {
+    opacity: 0.5;
+    cursor: default;
+}
+
+/* --- Reports View Specific Styles --- */
+.reports-layout {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    gap: 30px;
+}
+
+.card {
+    background-color: var(--color-card-background);
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+}
+
+.card h3 {
+    font-size: 1.3em;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: var(--color-text);
+}
+
+.report-generator .form-group {
+    margin-bottom: 20px;
+}
+
+.report-generator label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--color-secondary-text);
+}
+
+.report-generator .select-field,
+.report-generator input[type="text"] {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid var(--color-border);
+    border-radius: 5px;
+    /* Use sidebar color for inputs to differentiate them slightly from card background in both modes */
+    background-color: var(--color-sidebar); 
+    color: var(--color-text);
+    font-size: var(--font-size-base);
+    outline: none;
+}
+
+.report-generator .generate-btn {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.report-list-table th, .report-list-table td {
+    padding: 12px 15px;
+}
+
+/* --- User Management Specific Styles --- */
+.user-table .avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+.user-table td:first-child {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.user-id {
+    font-size: 0.8em;
+    color: var(--color-secondary-text);
+    margin-left: 8px;
+}
+
+/* --- Settings View Specific Styles --- */
+.settings .settings-group-card {
+    margin-bottom: 25px;
+}
+
+.settings .form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.settings .form-group {
+    margin-bottom: 0; /* Override default form-group margin */
+    display: flex;
+    flex-direction: column;
+}
+
+.settings .form-group label {
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: var(--color-secondary-text);
+}
+
+.settings .form-group input[type="text"],
+.settings .form-group input[type="password"],
+.settings .form-group .select-field {
+    padding: 10px 15px;
+    border: 1px solid var(--color-border);
+    border-radius: 5px;
+    background-color: var(--color-sidebar); /* Use sidebar color for inputs */
+    color: var(--color-text);
+    font-size: var(--font-size-base);
+    outline: none;
+    box-shadow: none;
+}
+
+/* API Key Field with Refresh Icon */
+.settings .form-group:has(.refresh-icon) {
+    position: relative;
+}
+
+.settings .refresh-icon {
+    position: absolute;
+    right: 15px;
+    top: calc(50% + 5px); /* Position it correctly next to input */
+    transform: translateY(-50%);
+    color: var(--primary-color);
+    cursor: pointer;
+    transition: color 0.2s;
+    padding: 5px; /* Increase clickable area */
+}
+.settings .refresh-icon:hover {
+    color: var(--primary-color-hover);
+}
+
+/* External Mapping Service Field with Connect Button */
+.settings .form-group:has(.connect-btn) {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 10px;
+}
+.settings .form-group:has(.connect-btn) input[type="text"] {
+    grid-column: 1 / 2;
+}
+.settings .connect-btn {
+    grid-column: 2 / 3;
+    align-self: flex-end;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--primary-color);
+    color: white;
+    font-size: var(--font-size-base);
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    height: 40px; /* Match input height */
+    margin-bottom: 0px;
+}
+
+
+/* Toggle Switch Setting */
+.toggle-setting {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 15px 0;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.toggle-setting:last-of-type {
+    border-bottom: none;
+}
+
+.toggle-setting label {
+    flex-grow: 1;
+    font-weight: 600;
+    color: var(--color-text);
+    cursor: pointer;
+}
+
+.toggle-setting .description {
+    font-size: 0.9em;
+    color: var(--color-secondary-text);
+    margin-top: 5px;
+    margin-right: 20px;
+    flex-basis: 70%;
+}
+
+.toggle-switch-container {
+    flex-shrink: 0;
+    margin-top: 0px;
+}
+
+/* Custom Toggle Switch Styling */
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 45px;
+    height: 25px;
+    background-color: var(--color-secondary-text);
+    border-radius: 25px;
+    transition: background-color 0.4s;
+}
+
+.toggle-switch:before {
+    content: '';
+    position: absolute;
+    width: 21px;
+    height: 21px;
+    border-radius: 50%;
+    background-color: white;
+    top: 2px;
+    left: 2px;
+    transition: transform 0.4s;
+}
+
+.toggle-switch-container input[type="checkbox"] {
+    display: none;
+}
+
+.toggle-switch-container input[type="checkbox"]:checked + .toggle-switch {
+    background-color: var(--primary-color);
+}
+
+.toggle-switch-container input[type="checkbox"]:checked + .toggle-switch:before {
+    transform: translateX(20px);
+}
+
+/* Alert Threshold Group */
+.alert-threshold-group {
+    padding: 15px 0;
+    border-top: 1px solid var(--color-border);
+}
+.alert-threshold-group .description {
+    margin-top: 5px;
+    font-size: 0.9em;
+    color: var(--color-secondary-text);
+}
+.alert-threshold-group .select-field {
+    width: 300px;
+    max-width: 100%;
+}
+
+/* Data Management Actions */
+.data-management-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* General Input/Select consistency */
+input[type="text"], input[type="password"], select {
+    /* Ensures consistency across all forms */
+    height: 40px; 
+}

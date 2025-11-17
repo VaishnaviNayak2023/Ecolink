@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Your Reporting Method</title>
+    <!-- Poppins Font from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="reports.css">
+    <link rel="stylesheet" href="guidedreports.css">
+
+</head>
+<body>
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <div class="logo" style="font-weight: 700; color: #1e5c46;">EcoLink</div>
+        <nav class="nav-links">
+            <a href="homepage.html">Home</a>
+            <a href="#">About</a>
+            <a href="report.html">Report Incident</a>
+            <a href="#">Resources</a>
+            <a href="#">Contact</a>
+        </nav>
+        <div class="nav-buttons">
+            <a href="register.html" class="btn btn-signup">Sign Up</a> 
+            <a href="register.html" class="btn btn-login">Login</a> 
+        </div>
+    </header>
+
+
+    <main class="container content-section">
+        <section class="hero-section">
+            <h1>Choose Your Reporting Method</h1>
+            <p>Select the reporting option that works best for you. Both methods are secure and help us respond quickly to environmental incidents.</p>
+        </section>
+
+        <section class="cards-section">
+            <div class="card">
+                <div class="icon-circle">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <h2>Quick Report</h2>
+                <p>Report an incident under 2 minutes with essential details. Perfect for urgent situations.</p>
+                <button class="btn btn-report" onclick="window.location.href='quickreport.html'">Start Quick Report</button>
+            </div>
+            
+            <div class="card">
+                <div class="icon-circle">
+                    <i class="fas fa-file-alt"></i>
+                </div>
+                <h2>Guided Report</h2>
+                <p>Step-by-step detailed reporting with comprehensive information gathering for complex incidents.</p>
+                <a href="guidedreport.html" class="btn btn-report">Start Guided Report</a>
+
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Trusted by environmental agencies nationwide</p>
+    </footer>
+
+</body>
+</html>

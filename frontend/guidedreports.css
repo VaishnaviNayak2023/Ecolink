@@ -1,0 +1,922 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+body {
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  background-color: #fafafa;
+  color: #222;
+}
+
+body, .main-content-container {
+    background-color: #ffffff !important;
+}
+
+/* Navbar Container from previous example */
+.navbar {
+    background-color: #ffffff;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.04);
+    padding: 1.2rem 3.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 0.75rem;
+    position: relative;
+    z-index: 1000;
+    margin: 1.2rem;
+    border: 1px solid #f0f0f0;
+    max-width: 1200px;
+    width: 100%;
+}
+
+/* Navbar specific styles */
+.nav-links a, .more-dropdown-content a {
+    color: #1e5c46 20%;
+    text-decoration: none;
+    padding: 0.6rem 1.3rem;
+    transition: color 0.3s ease, background-color 0.3s ease;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    font-size: 1rem;
+    position: relative;
+}
+
+/* Nav links and buttons */
+.nav-links {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.btn-signup {
+    background-color: #1e5c46;
+    color: #fff;
+    border: 1px solid #1e5c46;
+    padding: 8px 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9em;
+    transition: background-color 0.3s ease;
+}
+
+.btn-login {
+    background-color: #fff;
+    color: #1e5c46;
+    border: 1px solid #1e5c46;
+    padding: 8px 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9em;
+    /* Added hover effect for Login button */
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-signup:hover {
+    background-color: #fff;
+    color: #1e5c46;
+    border: 1px solid #1e5c46;
+}
+
+/* Added hover effect for Login button */
+.btn-login:hover {
+    background-color: #1e5c46; /* Lighter background on hover */
+    color: #fff; /* Darker text */
+}
+
+/* Added hover effect for nav links */
+.nav-links a:hover {
+    color: #154230; /* Darker green on hover for text */
+    background-color: #eaf1ed; /* Very light green background */
+}
+
+/* Example CSS for the selected card */
+.category-grid .card.selected {
+  border: 2px solid #1e5c46; /* A noticeable border color */
+  background-color: #e6f3ef; /* A light background tint */
+  box-shadow: 0 0 10px rgba(30, 92, 70, 0.3);
+}
+
+/* MAIN LAYOUT */
+.main-layout {
+  display: flex;
+  height: calc(100vh - 70px);
+}
+
+/* SIDEBAR */
+.sidebar {
+  background: #fff;
+  width: 28%;
+  border-right: 1px solid #eee;
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.sidebar h2 {
+  margin: 0 0 0.4rem 0;
+  color: #111;
+  font-size: 1.3rem;
+}
+
+.subtitle {
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+}
+
+.steps {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem 0;
+}
+
+.steps li {
+  background: #e5f1ea;
+  padding: 0.8rem 1rem;
+  border-radius: 6px;
+  margin-bottom: 0.6rem;
+  color: #333;
+  font-weight: 500;
+}
+
+.steps li.active {
+  background: #1e5c46;
+  color: white;
+}
+
+.steps li span {
+  display: block;
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.steps li.active span {
+  color: #cce2d9;
+}
+
+/* PROGRESS */
+.progress-section {
+  margin-top: 2rem;
+}
+
+.progress-bar {
+  background: #e3e3e3;
+  border-radius: 5px;
+  overflow: hidden;
+  height: 6px;
+  margin: 0.4rem 0;
+}
+
+.progress {
+  width: 16%;
+  height: 6px;
+  background: #1e5c46;
+}
+
+.progress-label {
+  font-size: 0.85rem;
+  color: #555;
+}
+
+.draft-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #777;
+  font-size: 0.85rem;
+  margin-top: 2rem;
+}
+
+/* RIGHT PANEL */
+.report-content {
+  flex: 1;
+  background: #fff;
+  padding: 2.5rem 3rem;
+}
+
+.report-content h1 {
+  font-size: 1.6rem;
+  color: #111;
+  margin-bottom: 0.6rem;
+}
+
+.description {
+  color: #555;
+  margin-bottom: 2rem;
+}
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.card {
+  background: #fafafa;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1.2rem;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  border-color: #1e5c46;
+  background: #edf5f0;
+}
+
+.card h3 {
+  margin: 0.4rem 0 0.3rem;
+  color: #1e5c46;
+  font-size: 1rem;
+}
+
+.card p {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* BUTTONS */
+.button-row {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.8rem;
+  margin-top: 2.5rem;
+}
+
+.btn-cancel {
+  background: #d9534f;
+  color: #fff;
+  border: none;
+  padding: 0.7rem 1.4rem;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.btn-reset {
+  background: #fff;
+  border: 1px solid #d9534f;
+  color: #d9534f;
+  padding: 0.7rem 1.4rem;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.btn-continue {
+  background: #1e5c46;
+  color: white;
+  border: none;
+  padding: 0.7rem 1.4rem;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+
+/*PAGE 2*/
+/* LOCATION FORM SECTION */
+.location-form {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  max-width: 600px;
+}
+
+/* Labels */
+.location-form label {
+  font-weight: 600;
+  color: #222;
+  font-size: 1rem;
+  margin-bottom: 0.2rem;
+  display: block;
+}
+
+/* Input Fields */
+.location-form input[type="text"],
+.location-form textarea {
+  width: 100%;
+  border: 1px solid #d3d3d3;
+  border-radius: 8px;
+  padding: 0.8rem 1rem;
+  font-size: 0.95rem;
+  background-color: #fff;
+  transition: all 0.25s ease;
+  box-sizing: border-box;
+}
+
+.location-form input:focus,
+.location-form textarea:focus {
+  border-color: #1e5c46;
+  background-color: #f7faf9;
+  outline: none;
+}
+
+/* Use My Location Button */
+.btn-location {
+  background-color: #eaf5f1;
+  color: #1e5c46;
+  border: 1px solid #cde3d8;
+  border-radius: 6px;
+  padding: 0.7rem 1.4rem;
+  font-weight: 500;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  width: fit-content;
+}
+
+.btn-location:hover {
+  background-color: #d7ede4;
+  transform: translateY(-1px);
+}
+
+/* Latitude and Longitude fields side-by-side */
+.coordinate-fields {
+  display: flex;
+  gap: 1rem;
+}
+
+.coordinate-fields input {
+  flex: 1;
+}
+
+/* Textarea */
+.location-form textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+/* Map Section */
+.map-section {
+  margin-top: 1rem;
+}
+
+.map-section iframe {
+  width: 100%;
+  height: 280px;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Footer */
+footer {
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+    color: #666;
+    font-size: 0.9em;
+    margin-top: auto;
+}
+
+
+/* === INCIDENT DETAILS + EVIDENCE PAGE (Final Updated CSS) === */
+
+/* === GENERAL PAGE STRUCTURE === */
+.report-content {
+  flex: 1;
+  background: #fff;
+  padding: 2.5rem 3rem 4rem;
+  padding-bottom: 4rem; /* consistent bottom space */
+}
+
+.details-form,
+.evidence-form {
+  margin-top: 1.5rem;
+  margin-bottom: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 750px;
+  width: 100%;
+}
+
+/* === HEADINGS === */
+.report-content h1 {
+  font-size: 2rem;
+  color: #1b1b1b;
+  margin-bottom: 0.5rem;
+}
+
+.description {
+  color: #555;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+/* === SUBTEXT === */
+.form-subtext {
+  color: #666;
+  font-size: 0.9rem;
+  margin-top: -0.5rem;
+  margin-bottom: 1rem;
+}
+
+/* === OBSERVED IMPACTS GRID === */
+.impact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.2rem;
+}
+
+.impact-card {
+  border: 1px solid #dcdcdc;
+  border-radius: 12px;
+  padding: 1.2rem 1rem;
+  background: #fff;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+}
+
+.impact-card:hover {
+  border-color: #1e5c46;
+  background-color: #f5faf7;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.impact-card input[type="checkbox"] {
+  margin-top: 0.25rem;
+  transform: scale(1.2);
+  cursor: pointer;
+  accent-color: #1e5c46;
+}
+
+.impact-card:has(input[type="checkbox"]:checked) {
+  border-color: #1e5c46;
+  background-color: #f0f8f5;
+  box-shadow: 0 0 0 2px rgba(30, 92, 70, 0.15);
+  transform: scale(1.01);
+}
+
+.impact-card span {
+  font-weight: 600;
+  color: #222;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.impact-card small {
+  color: #666;
+  font-size: 0.85rem;
+  line-height: 1.3;
+}
+
+/* === INPUTS, TEXTAREA, SELECT === */
+.details-form input[type="text"],
+.details-form textarea,
+.details-form select,
+.datetime-fields input {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 0.9rem 1rem;
+  font-size: 0.95rem;
+  width: 100%;
+  background-color: #fff;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.details-form input:focus,
+.details-form textarea:focus,
+.details-form select:focus,
+.datetime-fields input:focus {
+  border-color: #1e5c46;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(30, 92, 70, 0.15);
+}
+
+.char-count {
+  text-align: right;
+  font-size: 0.8rem;
+  color: #777;
+  margin-top: -0.5rem;
+}
+
+/* === DATE & TIME FIELDS === */
+.datetime-fields {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* === EVIDENCE UPLOAD === */
+.upload-box {
+  border: 2px dashed #cbd5d1;
+  border-radius: 12px;
+  background: #fafafa;
+  text-align: center;
+  padding: 3rem 2rem;
+  position: relative;
+  transition: border-color 0.3s ease;
+}
+
+.upload-box:hover {
+  border-color: #1e5c46;
+  background-color: #f7faf9;
+}
+
+.upload-icon {
+  font-size: 2.5rem;
+  color: #1e5c46;
+  margin-bottom: 1rem;
+}
+
+.upload-text {
+  font-size: 1.1rem;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.upload-text span {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.btn-choose {
+  display: inline-block;
+  background: #1e5c46;
+  color: #fff;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: background 0.3s ease;
+}
+
+.btn-choose:hover {
+  background: #174a39;
+}
+
+.file-support {
+  display: block;
+  color: #777;
+  font-size: 0.85rem;
+  margin-top: 1rem;
+}
+
+#fileUpload {
+  opacity: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+}
+
+.file-list {
+  margin-top: -0.5rem;
+}
+
+.file-item {
+  background: #f3f9f6;
+  border: 1px solid #cde3d8;
+  border-radius: 8px;
+  padding: 0.7rem 1rem;
+  margin-top: 0.5rem;
+  color: #1e5c46;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+/* === BUTTONS (New Layout) === */
+.button-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 2.5rem;
+}
+
+/* First row: Back + Continue */
+.button-row-top {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+/* Second row: Cancel + Reset */
+.button-row-bottom {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+button {
+  border-radius: 8px;
+  padding: 0.8rem 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+/* Back button */
+.btn-back {
+  background-color: #d3d3d3;
+  color: #333;
+  border: none;
+}
+.btn-back:hover {
+  background-color: #c6c6c6;
+}
+
+/* Continue button */
+.btn-continue {
+  background-color: #1e5c46;
+  color: #fff;
+  border: none;
+}
+.btn-continue:hover {
+  background-color: #174a39;
+}
+
+/* Cancel button */
+.btn-cancel {
+  background-color: #d9534f;
+  color: #fff;
+  border: none;
+}
+.btn-cancel:hover {
+  background-color: #c13e3a;
+}
+
+/* Reset button */
+.btn-reset {
+  border: 1px solid #1e5c46;
+  background: transparent;
+  color: #1e5c46;
+}
+.btn-reset:hover {
+  background-color: #f3f9f6;
+}
+
+/* === RESPONSIVE DESIGN === */
+@media (max-width: 768px) {
+  .impact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .details-form,
+  .evidence-form {
+    max-width: 100%;
+  }
+
+  .button-row-top,
+  .button-row-bottom {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+
+/*REPORTER SECTION*/
+/* === FORM STYLES === */
+.reporter-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.3rem;
+  max-width: 700px;
+}
+
+.reporter-form label {
+  font-weight: 600;
+  color: #111;
+  margin-bottom: 0.4rem;
+  display: block;
+}
+
+.reporter-form input[type="text"],
+.reporter-form input[type="email"],
+.reporter-form input[type="tel"] {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 0.9rem 1rem;
+  font-size: 0.95rem;
+  background: #fff;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.reporter-form input:focus {
+  border-color: #1e5c46;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(30, 92, 70, 0.15);
+}
+
+/* Required field indicator */
+.required {
+  color: #d9534f;
+}
+
+/* Subtext (below phone field) */
+.form-subtext {
+  color: #777;
+  font-size: 0.9rem;
+  margin-top: -0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* === Data Usage Info Box === */
+.data-info {
+  background: #f8fbfd;
+  border: 1px solid #e0e7ef;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.data-info h4 {
+  margin: 0 0 0.8rem 0;
+  color: #111;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.data-info ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.data-info li {
+  font-size: 0.9rem;
+  margin-bottom: 0.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.data-info li.ok {
+  color: #1e5c46;
+}
+
+.data-info li.no {
+  color: #d9534f;
+}
+
+
+/*REVIEW PAGE*/
+/* --- Main Content --- */
+.report-content {
+  flex: 1;
+  padding: 3rem 3.5rem;
+  background: #fff;
+}
+
+.report-content h1 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.description {
+  color: #555;
+  margin-bottom: 2rem;
+}
+
+/* --- Accordion --- */
+.accordion-item {
+  border-radius: 10px;
+  background: #fafafa;
+  margin-bottom: 1rem;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.accordion-header {
+  width: 100%;
+  background: #fff;
+  border: none;
+  padding: 1rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background 0.3s ease;
+}
+
+.accordion-header:hover {
+  background: #f5f9f7;
+}
+
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.35s ease;
+  background: #fff;
+  padding: 0 1.5rem;
+}
+
+.accordion-item.active .accordion-content {
+  max-height: 1000px;
+  padding: 1rem 1.5rem 1.5rem;
+}
+
+.accordion-item.active .arrow {
+  transform: rotate(90deg);
+  transition: transform 0.3s;
+}
+
+.arrow {
+  font-size: 1.2rem;
+  transition: transform 0.3s;
+}
+
+/* Section content */
+.section-content h3, 
+.section-content h4 {
+  margin: 0 0 0.5rem;
+  color: #1e5c46;
+}
+
+.section-content p {
+  margin: 0.3rem 0;
+  color: #444;
+  font-size: 0.95rem;
+}
+
+/* Map preview */
+.map-preview img {
+  width: 100%;
+  border-radius: 8px;
+  margin-top: 0.5rem;
+}
+
+/* Evidence grid */
+.evidence-grid {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+.evidence-card {
+  flex: 1;
+  background: #f3f3f3;
+  height: 120px;
+  border-radius: 10px;
+}
+.add-new {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  color: #777;
+  background: #f9f9f9;
+  border: 2px dashed #ccc;
+}
+
+/* Confirmation box */
+.confirmation-box {
+  margin-top: 2rem;
+  background: #f5f9ff;
+  padding: 1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  color: #333;
+}
+.confirmation-box input {
+  margin-right: 8px;
+}
+
+@media (max-width: 768px) {
+  .main-layout {
+    flex-direction: column;
+  }
+  .sidebar {
+    width: 100%;
+  }
+}
+
+.steps li {
+  padding: 10px;
+  border-left: 4px solid #ccc;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.steps li.active {
+  /* Updated to match the dark green background from the image (like the dark green box) */
+  border-left-color: #1e5c46; /* A dark green border-left */
+  background: #1e5c46; /* Dark green background */
+  color: #ffffff; /* White text for contrast */
+  font-weight: bold;
+}
+
+.steps li.completed {
+  border-left-color: #1e5c46; /* Darker green for completed steps */
+  color: #555;
+  opacity: 0.8;
+}
